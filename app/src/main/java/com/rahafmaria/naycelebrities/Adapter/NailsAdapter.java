@@ -1,20 +1,17 @@
 package com.rahafmaria.naycelebrities.Adapter;
 
-import android.app.Dialog;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.rahafmaria.naycelebrities.Activities.HomeActivity;
+import com.rahafmaria.naycelebrities.Database.RemoteDB;
 import com.rahafmaria.naycelebrities.Model.NailsModel;
 import com.rahafmaria.naycelebrities.PathUrls;
 import com.rahafmaria.naycelebrities.R;
@@ -22,9 +19,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class NailsAdapter extends RecyclerView.Adapter<NailsAdapter.NailsViewHolder> {
     ArrayList<NailsModel> nailsModel;
     Context context = HomeActivity.context;
+    RemoteDB remoteDB = new RemoteDB(context);
+    SharedPreferences sharedPreferences = context.getSharedPreferences("loginCheck", MODE_PRIVATE);
 
 
     public NailsAdapter(ArrayList<NailsModel> nailsModel) {
@@ -48,7 +49,8 @@ public class NailsAdapter extends RecyclerView.Adapter<NailsAdapter.NailsViewHol
         holder.add_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                remoteDB.addFavouriteProduct(nailsModel.get(position).product_id
+                        ,Integer.parseInt(sharedPreferences.getString("user_id","")));
             }
         });
 

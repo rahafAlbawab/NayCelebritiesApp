@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rahafmaria.naycelebrities.Activities.HomeActivity;
+import com.rahafmaria.naycelebrities.Database.RemoteDB;
 import com.rahafmaria.naycelebrities.Model.ArmaniModel;
 import com.rahafmaria.naycelebrities.PathUrls;
 import com.rahafmaria.naycelebrities.R;
@@ -22,9 +23,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class ArmaniAdapter extends RecyclerView.Adapter<ArmaniAdapter.ArmaniViewHolder> {
     ArrayList<ArmaniModel> armaniModel;
     Context context = HomeActivity.context;
+    RemoteDB remoteDB = new RemoteDB(context);
+    SharedPreferences sharedPreferences = context.getSharedPreferences("loginCheck", MODE_PRIVATE);
 
     public ArmaniAdapter(ArrayList<ArmaniModel> armaniModel) {
         this.armaniModel = armaniModel;
@@ -52,6 +57,8 @@ public class ArmaniAdapter extends RecyclerView.Adapter<ArmaniAdapter.ArmaniView
         holder.add_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                remoteDB.addFavouriteProduct(armaniModel.get(position).product_id
+                        ,Integer.parseInt(sharedPreferences.getString("user_id","")));
 
 
             }
