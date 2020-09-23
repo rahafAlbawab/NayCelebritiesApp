@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/colorPurple">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Nay"
+        android:textColor="@color/White"
+        android:textSize="16sp"
+        android:textStyle="bold|italic" />
+
+
+    <ImageView
+        android:id="@+id/logout_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:src="@drawable/iconfinder_exit_2676937"
+        app:tint="@android:color/background_light"
+        />
+    <ImageView
+        android:id="@+id/chat_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_toStartOf="@+id/logout_icon"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:src="@drawable/iconfinder_ic_chat_bubble_48px_3669382"
+        app:tint="@android:color/background_light"
+        />
+</RelativeLayout>
+
