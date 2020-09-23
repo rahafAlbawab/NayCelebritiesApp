@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
         context = HomeActivity.this;
-        sharedPreferences = getSharedPreferences("loginChecked", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("loginCheck", MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
     }
