@@ -22,6 +22,7 @@ public class RemoteDB {
     public RemoteDB(Context context) {
         this.context = context;
     }
+
     public void addFavouriteProduct(final int product_id , final int celebrities){
         String url = PathUrls.baseUrl+PathUrls.addFavouriteProductUrl;
         RequestQueue requestQueue = Volley.newRequestQueue(context);
@@ -54,9 +55,37 @@ public class RemoteDB {
             }
 
 
-        };;
+        };
         requestQueue.add(stringRequest);
 
 
     }
+    public void removeProductFromFavouriteList(final int product_id , final int celebrities){
+        String url = PathUrls.baseUrl + PathUrls.removeProductFromFavouriteListUrl;
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("product_id", product_id + "");
+                params.put("celebrities_id", celebrities + "");
+
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+
+    }
+
 }

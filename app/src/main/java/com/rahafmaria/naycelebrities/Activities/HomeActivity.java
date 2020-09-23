@@ -21,6 +21,7 @@ public class HomeActivity extends AppCompatActivity {
 
     ImageView logout_icon;
     ImageView chat_icon;
+    ImageView product_list_icon;
     TabLayout tabLayout;
     ViewPager viewPager;
     HomeViewPagerAdpater homeViewPagerAdpater;
@@ -44,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
     private void Initialization() {
         logout_icon = findViewById(R.id.logout_icon);
         chat_icon = findViewById(R.id.chat_icon);
+        product_list_icon = findViewById(R.id.product_list_icon);
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
         context = HomeActivity.this;
@@ -68,6 +70,13 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, CelebritiesChatListActivity.class);
+                startActivity(intent);
+            }
+        });
+        product_list_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this,FavouriteProductList.class);
                 startActivity(intent);
             }
         });

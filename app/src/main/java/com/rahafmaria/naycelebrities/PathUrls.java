@@ -5,4 +5,6 @@ public class PathUrls {
     public static String loginUrl ="CelebritiesLogin.php";
     public static String getProductsUrl ="getProducts.php";
     public static String addFavouriteProductUrl ="addFavouriteProduct.php";
+    public static String removeProductFromFavouriteListUrl ="removeProductFromFavouriteList.php";
+    public static String getfavorateProductUrl ="getFavorateProducts.php";
 }

@@ -38,5 +38,15 @@
         android:src="@drawable/iconfinder_ic_chat_bubble_48px_3669382"
         app:tint="@android:color/background_light"
         />
+    <ImageView
+        android:id="@+id/product_list_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_toStartOf="@+id/chat_icon"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:src="@drawable/product_list_photo"
+        app:tint="@android:color/background_light"
+        />
 </RelativeLayout>
 
