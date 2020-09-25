@@ -1,7 +1,6 @@
 package com.rahafmaria.naycelebrities.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
@@ -10,8 +9,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.google.android.material.tabs.TabLayout;
 import com.rahafmaria.naycelebrities.Adapter.HomeViewPagerAdpater;
@@ -70,13 +67,15 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, CelebritiesChatListActivity.class);
+                intent.putExtra("activity_name","HomeActivity");
                 startActivity(intent);
             }
         });
         product_list_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this,FavouriteProductList.class);
+                Intent intent = new Intent(HomeActivity.this, FavouriteProductListActivity.class);
+                intent.putExtra("activity_name","HomeActivity");
                 startActivity(intent);
             }
         });

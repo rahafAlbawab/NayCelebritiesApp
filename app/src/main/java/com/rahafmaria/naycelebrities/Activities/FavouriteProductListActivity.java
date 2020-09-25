@@ -28,16 +28,18 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class FavouriteProductList extends AppCompatActivity {
+public class FavouriteProductListActivity extends AppCompatActivity {
+    ImageView logout_icon;
+    ImageView chat_icon;
+    ImageView arrow_icon;
     RecyclerView favourite_product_recycler;
     ArrayList<FavouriteProductListModel> favouriteProductListModels;
     FavouriteProductListAdapter favouriteProductListAdapter;
-    ImageView logout_icon;
-    ImageView chat_icon;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     public static Context context;
     int celebritiesId;
+    Intent mainIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,24 +51,28 @@ public class FavouriteProductList extends AppCompatActivity {
         fillModel();
         favourite_product_recycler.setAdapter(favouriteProductListAdapter);
     }
+
     private void Initialization() {
-        context = FavouriteProductList.this;
+        context = FavouriteProductListActivity.this;
+        mainIntent = getIntent();
         logout_icon = findViewById(R.id.logout_icon);
         chat_icon = findViewById(R.id.chat_icon);
+        arrow_icon = findViewById(R.id.arrow_icon);
         favourite_product_recycler = findViewById(R.id.favourite_product_recycler);
         favouriteProductListModels = new ArrayList<>();
         favouriteProductListAdapter = new FavouriteProductListAdapter(favouriteProductListModels);
         sharedPreferences = getSharedPreferences("loginCheck", MODE_PRIVATE);
         sharedPreferences = getSharedPreferences("loginCheck", MODE_PRIVATE);
         editor = sharedPreferences.edit();
-        celebritiesId = Integer.parseInt(sharedPreferences.getString("user_id",""));
+        celebritiesId = Integer.parseInt(sharedPreferences.getString("user_id", ""));
 
     }
+
     private void listeners() {
         logout_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FavouriteProductList.this, LoginActivity.class);
+                Intent intent = new Intent(FavouriteProductListActivity.this, LoginActivity.class);
                 editor.putString("isLogged", "no");
                 editor.commit();
                 startActivity(intent);
@@ -76,15 +82,34 @@ public class FavouriteProductList extends AppCompatActivity {
         chat_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FavouriteProductList.this, CelebritiesChatListActivity.class);
+                Intent intent = new Intent(FavouriteProductListActivity.this, CelebritiesChatListActivity.class);
+                intent.putExtra("activity_name","FavouriteProductListActivity");
+                startActivity(intent);
+            }
+        });
+        arrow_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent;
+                if(mainIntent.getStringExtra("activity_name").equals("HomeActivity")){
+                    intent = new Intent(FavouriteProductListActivity.this, HomeActivity.class);
+                }
+                else if(mainIntent.getStringExtra("activity_name").equals("CelebritiesChatListActivity")){
+                    intent = new Intent(FavouriteProductListActivity.this, CelebritiesChatListActivity.class);
+                }
+                else {
+                    intent = new Intent(FavouriteProductListActivity.this, CelebritiesChatActivity.class);
+                }
+
                 startActivity(intent);
             }
         });
 
 
     }
+
     private void fillModel() {
-        String url = PathUrls.baseUrl + PathUrls.getfavorateProductUrl + "?celebrities_id="+celebritiesId;
+        String url = PathUrls.baseUrl + PathUrls.getfavorateProductUrl + "?celebrities_id=" + celebritiesId;
         final RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonArrayRequest jsonArrayRequest =
                 new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
@@ -110,7 +135,7 @@ public class FavouriteProductList extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(FavouriteProductList.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(FavouriteProductListActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
         requestQueue.add(jsonArrayRequest);

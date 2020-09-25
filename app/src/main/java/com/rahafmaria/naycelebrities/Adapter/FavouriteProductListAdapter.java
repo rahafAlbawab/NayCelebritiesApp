@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.rahafmaria.naycelebrities.Activities.FavouriteProductList;
+import com.rahafmaria.naycelebrities.Activities.FavouriteProductListActivity;
 import com.rahafmaria.naycelebrities.Database.RemoteDB;
 import com.rahafmaria.naycelebrities.Model.FavouriteProductListModel;
 import com.rahafmaria.naycelebrities.PathUrls;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import static android.content.Context.MODE_PRIVATE;
 
 public class FavouriteProductListAdapter extends RecyclerView.Adapter<FavouriteProductListAdapter.FavouriteProductListViewHolder> {
-    Context context = FavouriteProductList.context;
+    Context context = FavouriteProductListActivity.context;
     ArrayList<FavouriteProductListModel> favouriteProductListModels;
     RemoteDB remoteDB = new RemoteDB(context);
     SharedPreferences sharedPreferences = context.getSharedPreferences("loginCheck", MODE_PRIVATE);

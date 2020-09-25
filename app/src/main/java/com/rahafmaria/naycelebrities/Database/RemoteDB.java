@@ -23,14 +23,14 @@ public class RemoteDB {
         this.context = context;
     }
 
-    public void addFavouriteProduct(final int product_id , final int celebrities){
+    public void addFavouriteProduct(final int product_id , final int celebrity_id){
         String url = PathUrls.baseUrl+PathUrls.addFavouriteProductUrl;
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d("responseAddFavouriteProduct",response);
-                if(response.equals("Updated")){
+                if(response.equals("alreadyExists")){
                     Toast.makeText(context,"This Product is already exist in your Favourite list",Toast.LENGTH_LONG).show();
                 }
                 else{
@@ -49,7 +49,7 @@ public class RemoteDB {
                 Map<String, String> params = new HashMap<String, String>();
 
                 params.put("product_id", product_id + "");
-                params.put("celebrities_id", celebrities + "");
+                params.put("celebrities_id", celebrity_id + "");
 
                 return params;
             }

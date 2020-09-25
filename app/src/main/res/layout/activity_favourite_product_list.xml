@@ -5,19 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.FavouriteProductList">
-    <include layout="@layout/action_bar_activity"/>
+    tools:context=".Activities.FavouriteProductListActivity">
+
+    <include layout="@layout/action_bar_activity" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Your Favourite Product"
-        android:textStyle="bold|italic"
+        android:layout_marginTop="10dp"
         android:fontFamily="monospace"
         android:gravity="center"
-        android:layout_marginTop="10dp"/>
+        android:text="Your Favourite Product"
+        android:textStyle="bold|italic" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favourite_product_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
