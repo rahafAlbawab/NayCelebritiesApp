@@ -29,8 +29,7 @@ public class HomeActivity extends AppCompatActivity {
     public static Context context;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-    public static Deque<String> IntentStack ;
-
+    public static Deque<String> IntentStack;
 
 
     @Override
@@ -75,7 +74,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, CelebritiesChatListActivity.class);
                 IntentStack.push("HomeActivity");
-                Log.d("firstOne",IntentStack.size()+"");
+                Log.d("firstOne", IntentStack.size() + "");
                 startActivity(intent);
             }
         });
@@ -84,7 +83,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, FavouriteProductListActivity.class);
                 IntentStack.push("HomeActivity");
-                Log.d("firstOne",IntentStack.size()+"");
+                Log.d("firstOne", IntentStack.size() + "");
                 startActivity(intent);
             }
         });

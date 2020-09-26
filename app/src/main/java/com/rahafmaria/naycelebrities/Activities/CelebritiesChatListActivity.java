@@ -132,7 +132,7 @@ public class CelebritiesChatListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent ;
+                Intent intent;
                 if (IntentStack.getFirst().equals("HomeActivity")) {
                     intent = new Intent(CelebritiesChatListActivity.this, HomeActivity.class);
                 } else if (IntentStack.getFirst().equals("FavouriteProductListActivity")) {

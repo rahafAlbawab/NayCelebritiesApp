@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         Initialization();
         listeners();
     }
+
     public void Initialization() {
         email_login = findViewById(R.id.email_login);
         password_login = findViewById(R.id.password_login);
@@ -63,18 +64,17 @@ public class LoginActivity extends AppCompatActivity {
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(email_login.getText().toString().equals("")|| password_login.getText().toString().equals("")) {
+                if (email_login.getText().toString().equals("") || password_login.getText().toString().equals("")) {
 
                     Toast.makeText(LoginActivity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
 
-                }
-                else if (checkEmail(email_login.getText().toString())) {
+                } else if (checkEmail(email_login.getText().toString())) {
                     RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
                     StringRequest sr = new StringRequest(Request.Method.POST, PathUrls.baseUrl + PathUrls.loginUrl, new Response.Listener<String>() {
 
                         @Override
                         public void onResponse(String response) {
-                            Log.d("responseRahaf",response);
+                            Log.d("responseRahaf", response);
                             if (response.equals("0")) {
                                 Toast.makeText(LoginActivity.this, "The password or email is wrong", Toast.LENGTH_SHORT).show();
                             } else {
@@ -112,19 +112,18 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("isLogged", "yes");
                     editor.commit();
 
-                }
-                else{
+                } else {
                     Toast.makeText(LoginActivity.this, "The email is invalid", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
     }
+
     public static boolean checkEmail(String email) {
         Pattern pattern = Patterns.EMAIL_ADDRESS;
         return pattern.matcher(email).matches();
     }
-
 
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,7 +51,7 @@ public class SkinAdapter extends RecyclerView.Adapter<SkinAdapter.SkinViewHolder
             @Override
             public void onClick(View view) {
                 remoteDB.addFavouriteProduct(skinModel.get(position).product_id
-                        ,Integer.parseInt(sharedPreferences.getString("user_id","")));
+                        , Integer.parseInt(sharedPreferences.getString("user_id", "")));
             }
         });
     }

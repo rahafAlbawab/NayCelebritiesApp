@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.rahafmaria.naycelebrities.Activities.HomeActivity;
 import com.rahafmaria.naycelebrities.Database.RemoteDB;
 import com.rahafmaria.naycelebrities.Model.FaceModel;
@@ -41,16 +43,16 @@ public class FaceAdapter extends RecyclerView.Adapter<FaceAdapter.FaceViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FaceViewHolder holder,final int position) {
-        String photo = PathUrls.baseUrl+ "Images/"+faceModel.get(position).product_image;
+    public void onBindViewHolder(@NonNull FaceViewHolder holder, final int position) {
+        String photo = PathUrls.baseUrl + "Images/" + faceModel.get(position).product_image;
         Picasso.get().load(photo).into(holder.product_image);
-        holder.product_price.setText(faceModel.get(position).product_price+"");
+        holder.product_price.setText(faceModel.get(position).product_price + "");
         holder.product_name.setText(faceModel.get(position).product_name);
         holder.add_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 remoteDB.addFavouriteProduct(faceModel.get(position).product_id
-                        ,Integer.parseInt(sharedPreferences.getString("user_id","")));
+                        , Integer.parseInt(sharedPreferences.getString("user_id", "")));
             }
         });
     }
@@ -62,7 +64,7 @@ public class FaceAdapter extends RecyclerView.Adapter<FaceAdapter.FaceViewHolder
 
     public class FaceViewHolder extends RecyclerView.ViewHolder {
         TextView product_name, product_price;
-        ImageView product_image ,add_image;
+        ImageView product_image, add_image;
 
 
         public FaceViewHolder(@NonNull View v) {
@@ -71,7 +73,6 @@ public class FaceAdapter extends RecyclerView.Adapter<FaceAdapter.FaceViewHolder
             product_name = v.findViewById(R.id.product_name);
             product_price = v.findViewById(R.id.product_price);
             add_image = v.findViewById(R.id.add_button);
-
 
 
         }

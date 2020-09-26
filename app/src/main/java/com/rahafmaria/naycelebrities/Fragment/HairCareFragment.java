@@ -52,6 +52,7 @@ public class HairCareFragment extends Fragment {
         hair_recyclerView.setAdapter(hairAdapter);
         return view;
     }
+
     private void fillList() {
         String url = PathUrls.baseUrl + PathUrls.getProductsUrl + "?category=hair";
         final RequestQueue requestQueue = Volley.newRequestQueue(getContext());

@@ -51,6 +51,7 @@ public class LipsFragment extends Fragment {
         lips_recyclerview.setAdapter(lipsAdapter);
         return view;
     }
+
     private void fillList() {
         String url = PathUrls.baseUrl + PathUrls.getProductsUrl + "?category=lips";
         final RequestQueue requestQueue = Volley.newRequestQueue(getContext());

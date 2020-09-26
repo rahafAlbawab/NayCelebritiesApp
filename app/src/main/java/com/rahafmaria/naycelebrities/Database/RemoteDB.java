@@ -19,21 +19,21 @@ import java.util.Map;
 
 public class RemoteDB {
     Context context;
+
     public RemoteDB(Context context) {
         this.context = context;
     }
 
-    public void addFavouriteProduct(final int product_id , final int celebrity_id){
-        String url = PathUrls.baseUrl+PathUrls.addFavouriteProductUrl;
+    public void addFavouriteProduct(final int product_id, final int celebrity_id) {
+        String url = PathUrls.baseUrl + PathUrls.addFavouriteProductUrl;
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("responseAddFavouriteProduct",response);
-                if(response.equals("alreadyExists")){
-                    Toast.makeText(context,"This Product is already exist in your Favourite list",Toast.LENGTH_LONG).show();
-                }
-                else{
+                Log.d("responseAddFavouriteProduct", response);
+                if (response.equals("alreadyExists")) {
+                    Toast.makeText(context, "This Product is already exist in your Favourite list", Toast.LENGTH_LONG).show();
+                } else {
                     Toast.makeText(context, "Added", Toast.LENGTH_SHORT).show();
                 }
 
@@ -43,7 +43,7 @@ public class RemoteDB {
             public void onErrorResponse(VolleyError error) {
 
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
@@ -60,7 +60,8 @@ public class RemoteDB {
 
 
     }
-    public void removeProductFromFavouriteList(final int product_id , final int celebrities){
+
+    public void removeProductFromFavouriteList(final int product_id, final int celebrities) {
         String url = PathUrls.baseUrl + PathUrls.removeProductFromFavouriteListUrl;
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -73,7 +74,7 @@ public class RemoteDB {
             public void onErrorResponse(VolleyError error) {
 
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();

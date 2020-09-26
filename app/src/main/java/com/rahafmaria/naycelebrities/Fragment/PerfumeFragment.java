@@ -19,7 +19,7 @@ public class PerfumeFragment extends Fragment {
     ChanelFragment chanelFragment;
     DiorFragment diorFragment;
     ArmaniFragment armaniFragment;
-    Button dior_button, chanel_button,armani_button;
+    Button dior_button, chanel_button, armani_button;
 
 
     public PerfumeFragment() {
@@ -38,7 +38,7 @@ public class PerfumeFragment extends Fragment {
         container_perfume_fragment = view.findViewById(R.id.container_perfume_fragment);
         chanelFragment = new ChanelFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.container_perfume_fragment, chanelFragment ); // give your fragment container id in first parameter
+        transaction.replace(R.id.container_perfume_fragment, chanelFragment); // give your fragment container id in first parameter
         transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
         transaction.commit();
 
@@ -47,7 +47,7 @@ public class PerfumeFragment extends Fragment {
             public void onClick(View view) {
                 diorFragment = new DiorFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.container_perfume_fragment, diorFragment ); // give your fragment container id in first parameter
+                transaction.replace(R.id.container_perfume_fragment, diorFragment); // give your fragment container id in first parameter
                 transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
                 transaction.commit();
 
@@ -59,7 +59,7 @@ public class PerfumeFragment extends Fragment {
             public void onClick(View view) {
                 chanelFragment = new ChanelFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.container_perfume_fragment, chanelFragment ); // give your fragment container id in first parameter
+                transaction.replace(R.id.container_perfume_fragment, chanelFragment); // give your fragment container id in first parameter
                 transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
                 transaction.commit();
 
@@ -70,13 +70,13 @@ public class PerfumeFragment extends Fragment {
             public void onClick(View view) {
                 armaniFragment = new ArmaniFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.container_perfume_fragment, armaniFragment ); // give your fragment container id in first parameter
+                transaction.replace(R.id.container_perfume_fragment, armaniFragment); // give your fragment container id in first parameter
                 transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
                 transaction.commit();
 
             }
         });
 
-        return view ;
+        return view;
     }
 }

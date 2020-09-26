@@ -92,13 +92,11 @@ public class FavouriteProductListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent;
-                if(IntentStack.getFirst().equals("HomeActivity")){
+                if (IntentStack.getFirst().equals("HomeActivity")) {
                     intent = new Intent(FavouriteProductListActivity.this, HomeActivity.class);
-                }
-                else if(IntentStack.getFirst().equals("CelebritiesChatListActivity")){
+                } else if (IntentStack.getFirst().equals("CelebritiesChatListActivity")) {
                     intent = new Intent(FavouriteProductListActivity.this, CelebritiesChatListActivity.class);
-                }
-                else {
+                } else {
                     intent = new Intent(FavouriteProductListActivity.this, CelebritiesChatActivity.class);
                 }
                 IntentStack.pop();

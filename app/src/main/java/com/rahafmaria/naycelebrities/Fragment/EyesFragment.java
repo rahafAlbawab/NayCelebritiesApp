@@ -52,6 +52,7 @@ public class EyesFragment extends Fragment {
 
         return view;
     }
+
     private void fillList() {
         String url = PathUrls.baseUrl + PathUrls.getProductsUrl + "?category=eyes";
         final RequestQueue requestQueue = Volley.newRequestQueue(getContext());

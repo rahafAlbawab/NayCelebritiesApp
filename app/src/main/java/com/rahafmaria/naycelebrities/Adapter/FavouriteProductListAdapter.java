@@ -42,7 +42,7 @@ public class FavouriteProductListAdapter extends RecyclerView.Adapter<FavouriteP
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FavouriteProductListViewHolder holder,final int position) {
+    public void onBindViewHolder(@NonNull FavouriteProductListViewHolder holder, final int position) {
 
         String photo = PathUrls.baseUrl + "Images/" + favouriteProductListModels.get(position).product_image;
         Picasso.get().load(photo).into(holder.product_image);
@@ -51,7 +51,7 @@ public class FavouriteProductListAdapter extends RecyclerView.Adapter<FavouriteP
             @Override
             public void onClick(View view) {
                 remoteDB.removeProductFromFavouriteList(favouriteProductListModels.get(position).product_id
-                        ,Integer.parseInt(sharedPreferences.getString("user_id","")));
+                        , Integer.parseInt(sharedPreferences.getString("user_id", "")));
                 favouriteProductListModels.remove(position);
                 notifyDataSetChanged();
             }

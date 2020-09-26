@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,18 +48,18 @@ public class ArmaniAdapter extends RecyclerView.Adapter<ArmaniAdapter.ArmaniView
     @Override
     public void onBindViewHolder(@NonNull final ArmaniViewHolder holder, final int position) {
         // 1- To get image from server by link :https://beautycosmeticsapp.000webhostapp.com/Images/armani.jpg
-        String photo = PathUrls.baseUrl+ "Images/"+armaniModel.get(position).product_image;
+        String photo = PathUrls.baseUrl + "Images/" + armaniModel.get(position).product_image;
         //2- to Display image come from internet should use picasso
         //photo -> link of image
         //holder.product_image -> The location where the image is displayed
         Picasso.get().load(photo).into(holder.product_image);
-        holder.product_price.setText(armaniModel.get(position).product_price+"");
+        holder.product_price.setText(armaniModel.get(position).product_price + "");
         holder.product_name.setText(armaniModel.get(position).product_name);
         holder.add_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 remoteDB.addFavouriteProduct(armaniModel.get(position).product_id
-                        ,Integer.parseInt(sharedPreferences.getString("user_id","")));
+                        , Integer.parseInt(sharedPreferences.getString("user_id", "")));
 
 
             }
@@ -72,7 +73,7 @@ public class ArmaniAdapter extends RecyclerView.Adapter<ArmaniAdapter.ArmaniView
 
     public class ArmaniViewHolder extends RecyclerView.ViewHolder {
         TextView product_name, product_price;
-        ImageView product_image , add_image;
+        ImageView product_image, add_image;
 
 
         public ArmaniViewHolder(@NonNull View v) {

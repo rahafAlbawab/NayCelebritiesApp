@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.rahafmaria.naycelebrities.Activities.HomeActivity;
 import com.rahafmaria.naycelebrities.Database.RemoteDB;
 import com.rahafmaria.naycelebrities.Model.EyesModel;
@@ -26,7 +28,6 @@ public class EyesAdapter extends RecyclerView.Adapter<EyesAdapter.EyesViewHolder
     Context context = HomeActivity.context;
     RemoteDB remoteDB = new RemoteDB(context);
     SharedPreferences sharedPreferences = context.getSharedPreferences("loginCheck", MODE_PRIVATE);
-
 
 
     public EyesAdapter(ArrayList<EyesModel> eyesModel) {
@@ -51,7 +52,7 @@ public class EyesAdapter extends RecyclerView.Adapter<EyesAdapter.EyesViewHolder
             @Override
             public void onClick(View view) {
                 remoteDB.addFavouriteProduct(eyesModel.get(position).product_id
-                        ,Integer.parseInt(sharedPreferences.getString("user_id","")));
+                        , Integer.parseInt(sharedPreferences.getString("user_id", "")));
             }
         });
 

@@ -51,6 +51,7 @@ public class FaceFragment extends Fragment {
         face_recyclerView.setAdapter(faceAdapter);
         return view;
     }
+
     private void fillList() {
         String url = PathUrls.baseUrl + PathUrls.getProductsUrl + "?category=face";
         final RequestQueue requestQueue = Volley.newRequestQueue(getContext());
@@ -65,7 +66,7 @@ public class FaceFragment extends Fragment {
                                 faceModel.add(new FaceModel(obj.getString("image"),
                                         obj.getString("name"),
                                         obj.getInt("price")
-                                        ,obj.getInt("product_id")));
+                                        , obj.getInt("product_id")));
                                 faceAdapter.notifyDataSetChanged();
                             } catch (JSONException e) {
                                 e.printStackTrace();

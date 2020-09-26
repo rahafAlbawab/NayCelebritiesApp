@@ -40,8 +40,6 @@ public class ArmaniFragment extends Fragment {
     }
 
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,6 +56,7 @@ public class ArmaniFragment extends Fragment {
 
         return view;
     }
+
     private void fillList() {
         //first step get url of page that fetches the data from DB
         // مابعد ال ? هو الشرط اللي حنمرره لل Query

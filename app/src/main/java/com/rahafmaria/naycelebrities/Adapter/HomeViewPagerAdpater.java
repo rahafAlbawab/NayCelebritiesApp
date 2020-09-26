@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
 import com.rahafmaria.naycelebrities.Fragment.CareFragment;
 import com.rahafmaria.naycelebrities.Fragment.MakeUpFragment;
 import com.rahafmaria.naycelebrities.Fragment.PerfumeFragment;
@@ -17,7 +18,7 @@ public class HomeViewPagerAdpater extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch(position){
+        switch (position) {
             case 0:
                 return new MakeUpFragment();
             case 1:
@@ -37,7 +38,7 @@ public class HomeViewPagerAdpater extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
 
-        switch(position){
+        switch (position) {
             case 0:
                 return "MakeUp";
             case 1:

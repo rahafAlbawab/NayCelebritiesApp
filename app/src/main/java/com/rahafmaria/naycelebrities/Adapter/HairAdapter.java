@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.rahafmaria.naycelebrities.Activities.HomeActivity;
 import com.rahafmaria.naycelebrities.Database.RemoteDB;
 import com.rahafmaria.naycelebrities.Model.HairModels;
@@ -27,7 +29,6 @@ public class HairAdapter extends RecyclerView.Adapter<HairAdapter.HairViewHolder
     Context context = HomeActivity.context;
     RemoteDB remoteDB = new RemoteDB(context);
     SharedPreferences sharedPreferences = context.getSharedPreferences("loginCheck", MODE_PRIVATE);
-
 
 
     public HairAdapter(ArrayList<HairModels> hairModels) {
@@ -52,7 +53,7 @@ public class HairAdapter extends RecyclerView.Adapter<HairAdapter.HairViewHolder
             @Override
             public void onClick(View view) {
                 remoteDB.addFavouriteProduct(hairModels.get(position).product_id
-                        ,Integer.parseInt(sharedPreferences.getString("user_id","")));
+                        , Integer.parseInt(sharedPreferences.getString("user_id", "")));
             }
         });
     }

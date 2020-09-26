@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 
 public class DiorFragment extends Fragment {
-    RecyclerView dior_recyclerView ;
+    RecyclerView dior_recyclerView;
     ArrayList<DiorModel> diorModels;
     DiorAdapter diorAdapter;
 
@@ -37,7 +37,6 @@ public class DiorFragment extends Fragment {
     public DiorFragment() {
         // Required empty public constructor
     }
-
 
 
     @Override
@@ -56,6 +55,7 @@ public class DiorFragment extends Fragment {
         dior_recyclerView.setAdapter(diorAdapter);
         return view;
     }
+
     private void fillList() {
         String url = PathUrls.baseUrl + PathUrls.getProductsUrl + "?category=dior";
         final RequestQueue requestQueue = Volley.newRequestQueue(getContext());
@@ -67,7 +67,7 @@ public class DiorFragment extends Fragment {
                         for (int i = 0; i < response.length(); i++) {
                             try {
                                 JSONObject obj = response.getJSONObject(i);
-                                diorModels .add(new DiorModel(obj.getString("image"),
+                                diorModels.add(new DiorModel(obj.getString("image"),
                                         obj.getString("name"),
                                         obj.getInt("price"),
                                         obj.getInt("product_id")));

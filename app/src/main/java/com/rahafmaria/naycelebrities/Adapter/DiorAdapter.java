@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.rahafmaria.naycelebrities.Activities.HomeActivity;
 import com.rahafmaria.naycelebrities.Database.RemoteDB;
 import com.rahafmaria.naycelebrities.Model.DiorModel;
@@ -50,7 +52,7 @@ public class DiorAdapter extends RecyclerView.Adapter<DiorAdapter.DiorViewHolder
             @Override
             public void onClick(View view) {
                 remoteDB.addFavouriteProduct(diorModels.get(position).product_id
-                        ,Integer.parseInt(sharedPreferences.getString("user_id","")));
+                        , Integer.parseInt(sharedPreferences.getString("user_id", "")));
             }
         });
     }

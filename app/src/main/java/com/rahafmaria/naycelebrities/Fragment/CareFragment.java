@@ -25,19 +25,18 @@ public class CareFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       View view = inflater.inflate(R.layout.fragment_care, container, false);
+        View view = inflater.inflate(R.layout.fragment_care, container, false);
         Hair_button = view.findViewById(R.id.Hair_Care_button);
         Skin_hutton = view.findViewById(R.id.Skin_Care_button);
         container_fragment = view.findViewById(R.id.container_fragment);
         hairCareFragment = new HairCareFragment();
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.container_fragment, hairCareFragment ); // give your fragment container id in first parameter
+        transaction.replace(R.id.container_fragment, hairCareFragment); // give your fragment container id in first parameter
         transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
         transaction.commit();
 
@@ -46,7 +45,7 @@ public class CareFragment extends Fragment {
             public void onClick(View view) {
                 hairCareFragment = new HairCareFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.container_fragment, hairCareFragment ); // give your fragment container id in first parameter
+                transaction.replace(R.id.container_fragment, hairCareFragment); // give your fragment container id in first parameter
                 transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
                 transaction.commit();
 
@@ -57,13 +56,13 @@ public class CareFragment extends Fragment {
             public void onClick(View view) {
                 skinCareFragment = new SkinCareFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.container_fragment, skinCareFragment ); // give your fragment container id in first parameter
+                transaction.replace(R.id.container_fragment, skinCareFragment); // give your fragment container id in first parameter
                 transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
                 transaction.commit();
 
             }
         });
 
-        return  view ;
+        return view;
     }
 }

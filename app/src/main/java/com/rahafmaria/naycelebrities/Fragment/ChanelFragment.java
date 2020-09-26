@@ -38,7 +38,6 @@ public class ChanelFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,6 +53,7 @@ public class ChanelFragment extends Fragment {
         chanel_recyclerView.setAdapter(chanelAdapter);
         return view;
     }
+
     private void fillList() {
         String url = PathUrls.baseUrl + PathUrls.getProductsUrl + "?category=chanel";
         final RequestQueue requestQueue = Volley.newRequestQueue(getContext());
@@ -84,7 +84,6 @@ public class ChanelFragment extends Fragment {
                     }
                 });
         requestQueue.add(jsonArrayRequest);
-
 
 
     }

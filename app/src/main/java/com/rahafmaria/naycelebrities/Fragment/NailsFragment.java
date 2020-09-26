@@ -52,6 +52,7 @@ public class NailsFragment extends Fragment {
         nails_recyclerView.setAdapter(nailsAdapter);
         return view;
     }
+
     private void fillList() {
         String url = PathUrls.baseUrl + PathUrls.getProductsUrl + "?category=nails";
         final RequestQueue requestQueue = Volley.newRequestQueue(getContext());

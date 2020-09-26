@@ -53,8 +53,9 @@ public class SkinCareFragment extends Fragment {
         skin_recyclerView.setAdapter(skinAdapter);
 
 
-        return view ;
+        return view;
     }
+
     private void fillList() {
         String url = PathUrls.baseUrl + PathUrls.getProductsUrl + "?category=skin";
         final RequestQueue requestQueue = Volley.newRequestQueue(getContext());
@@ -85,7 +86,6 @@ public class SkinCareFragment extends Fragment {
                     }
                 });
         requestQueue.add(jsonArrayRequest);
-
 
 
     }

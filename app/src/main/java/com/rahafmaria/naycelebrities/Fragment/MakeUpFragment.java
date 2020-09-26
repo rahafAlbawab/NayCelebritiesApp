@@ -20,7 +20,7 @@ public class MakeUpFragment extends Fragment {
     FaceFragment faceFragment;
     LipsFragment lipsFragment;
     NailsFragment nailsFragment;
-    Button eyes_button, face_button,lips_button,nail_button;
+    Button eyes_button, face_button, lips_button, nail_button;
 
 
     public MakeUpFragment() {
@@ -40,7 +40,7 @@ public class MakeUpFragment extends Fragment {
         container_makeup_fragment = view.findViewById(R.id.container_makeup_fragment);
         eyesFragment = new EyesFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.container_makeup_fragment, eyesFragment ); // give your fragment container id in first parameter
+        transaction.replace(R.id.container_makeup_fragment, eyesFragment); // give your fragment container id in first parameter
         transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
         transaction.commit();
 
@@ -49,7 +49,7 @@ public class MakeUpFragment extends Fragment {
             public void onClick(View view) {
                 eyesFragment = new EyesFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.container_makeup_fragment, eyesFragment ); // give your fragment container id in first parameter
+                transaction.replace(R.id.container_makeup_fragment, eyesFragment); // give your fragment container id in first parameter
                 transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
                 transaction.commit();
 
@@ -61,7 +61,7 @@ public class MakeUpFragment extends Fragment {
             public void onClick(View view) {
                 faceFragment = new FaceFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.container_makeup_fragment, faceFragment ); // give your fragment container id in first parameter
+                transaction.replace(R.id.container_makeup_fragment, faceFragment); // give your fragment container id in first parameter
                 transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
                 transaction.commit();
 
@@ -72,7 +72,7 @@ public class MakeUpFragment extends Fragment {
             public void onClick(View view) {
                 lipsFragment = new LipsFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.container_makeup_fragment, lipsFragment ); // give your fragment container id in first parameter
+                transaction.replace(R.id.container_makeup_fragment, lipsFragment); // give your fragment container id in first parameter
                 transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
                 transaction.commit();
 
@@ -83,7 +83,7 @@ public class MakeUpFragment extends Fragment {
             public void onClick(View view) {
                 nailsFragment = new NailsFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.container_makeup_fragment, nailsFragment ); // give your fragment container id in first parameter
+                transaction.replace(R.id.container_makeup_fragment, nailsFragment); // give your fragment container id in first parameter
                 transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
                 transaction.commit();
 
