@@ -39,7 +39,7 @@ public class CelebritiesChatListAdapter extends RecyclerView.Adapter<Celebrities
 
     @Override
     public void onBindViewHolder(@NonNull final CelebritiesChatListViewHolder holder, final int position) {
-        String photo = PathUrls.baseUrl + "UserImage/" + celebritiesChatListModels.get(position).user_image;
+       final String photo = PathUrls.baseUrl + "UserImage/" + celebritiesChatListModels.get(position).user_image;
         Picasso.get().load(photo).into(holder.user_image);
         holder.user_name.setText(celebritiesChatListModels.get(position).user_name);
         holder.latest_message.setText(celebritiesChatListModels.get(position).latest_message);
@@ -47,12 +47,12 @@ public class CelebritiesChatListAdapter extends RecyclerView.Adapter<Celebrities
             @Override
             public void onClick(View view) {
                 final int user_id = celebritiesChatListModels.get(position).user_id;
-                final String user_name= celebritiesChatListModels.get(position).user_name;
-                final String user_image = celebritiesChatListModels.get(position).user_image;
+                final String user_name = celebritiesChatListModels.get(position).user_name;
+                final String user_image = photo;
                 Intent intent = new Intent(context, CelebritiesChatActivity.class);
-                intent.putExtra("user_id",user_id);
-                intent.putExtra("user_name",user_name);
-                intent.putExtra("user_image",user_image);
+                intent.putExtra("user_id", user_id);
+                intent.putExtra("user_name", user_name);
+                intent.putExtra("user_image", user_image);
                 context.startActivity(intent);
             }
         });
