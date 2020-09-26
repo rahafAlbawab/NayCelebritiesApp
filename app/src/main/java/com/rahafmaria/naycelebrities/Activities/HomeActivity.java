@@ -7,12 +7,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.rahafmaria.naycelebrities.Adapter.HomeViewPagerAdpater;
 import com.rahafmaria.naycelebrities.R;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -25,6 +29,8 @@ public class HomeActivity extends AppCompatActivity {
     public static Context context;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    public static Deque<String> IntentStack ;
+
 
 
     @Override
@@ -46,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
         context = HomeActivity.this;
+        IntentStack = new ArrayDeque<String>();
         sharedPreferences = getSharedPreferences("loginCheck", MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
@@ -67,7 +74,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, CelebritiesChatListActivity.class);
-                intent.putExtra("activity_name","HomeActivity");
+                IntentStack.push("HomeActivity");
+                Log.d("firstOne",IntentStack.size()+"");
                 startActivity(intent);
             }
         });
@@ -75,7 +83,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, FavouriteProductListActivity.class);
-                intent.putExtra("activity_name","HomeActivity");
+                IntentStack.push("HomeActivity");
+                Log.d("firstOne",IntentStack.size()+"");
                 startActivity(intent);
             }
         });

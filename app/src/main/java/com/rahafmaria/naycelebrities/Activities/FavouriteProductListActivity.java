@@ -28,6 +28,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.rahafmaria.naycelebrities.Activities.HomeActivity.IntentStack;
+
 public class FavouriteProductListActivity extends AppCompatActivity {
     ImageView logout_icon;
     ImageView chat_icon;
@@ -39,7 +41,7 @@ public class FavouriteProductListActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     public static Context context;
     int celebritiesId;
-    Intent mainIntent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,6 @@ public class FavouriteProductListActivity extends AppCompatActivity {
 
     private void Initialization() {
         context = FavouriteProductListActivity.this;
-        mainIntent = getIntent();
         logout_icon = findViewById(R.id.logout_icon);
         chat_icon = findViewById(R.id.chat_icon);
         arrow_icon = findViewById(R.id.arrow_icon);
@@ -83,7 +84,7 @@ public class FavouriteProductListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FavouriteProductListActivity.this, CelebritiesChatListActivity.class);
-                intent.putExtra("activity_name","FavouriteProductListActivity");
+                IntentStack.push("FavouriteProductListActivity");
                 startActivity(intent);
             }
         });
@@ -91,16 +92,16 @@ public class FavouriteProductListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent;
-                if(mainIntent.getStringExtra("activity_name").equals("HomeActivity")){
+                if(IntentStack.getFirst().equals("HomeActivity")){
                     intent = new Intent(FavouriteProductListActivity.this, HomeActivity.class);
                 }
-                else if(mainIntent.getStringExtra("activity_name").equals("CelebritiesChatListActivity")){
+                else if(IntentStack.getFirst().equals("CelebritiesChatListActivity")){
                     intent = new Intent(FavouriteProductListActivity.this, CelebritiesChatListActivity.class);
                 }
                 else {
                     intent = new Intent(FavouriteProductListActivity.this, CelebritiesChatActivity.class);
                 }
-
+                IntentStack.pop();
                 startActivity(intent);
             }
         });
