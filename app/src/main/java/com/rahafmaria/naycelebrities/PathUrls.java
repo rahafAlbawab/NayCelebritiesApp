@@ -8,4 +8,5 @@ public class PathUrls {
     public static String removeProductFromFavouriteListUrl ="removeProductFromFavouriteList.php";
     public static String getfavorateProductUrl ="getFavorateProducts.php";
     public static String getCelebritiesUrl ="getCelebrities.php";
+    public static String insertChatUrl ="insertChat.php";
 }
