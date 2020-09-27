@@ -30,6 +30,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.rahafmaria.naycelebrities.Adapter.CelebritiesChatAdapter;
+import com.rahafmaria.naycelebrities.Database.LocalDB;
 import com.rahafmaria.naycelebrities.Database.RemoteDB;
 import com.rahafmaria.naycelebrities.Model.CelebritiesChatModel;
 import com.rahafmaria.naycelebrities.R;
@@ -58,6 +59,7 @@ public class CelebritiesChatActivity extends AppCompatActivity {
     String userImage;
     public static int user_id;
     RemoteDB remoteDatabase;
+    LocalDB localDB;
     Uri filePath;
 
     @Override
@@ -77,8 +79,9 @@ public class CelebritiesChatActivity extends AppCompatActivity {
             user_name.setText(userName);
             Picasso.get().load(userImage).into(user_image);
 
-
         }
+
+
         databaseReference.child(user_id + "").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -123,6 +126,7 @@ public class CelebritiesChatActivity extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("chat");
         storageReference = FirebaseStorage.getInstance().getReference();
         remoteDatabase = new RemoteDB(this);
+        localDB = new LocalDB(this);
 
     }
 
@@ -140,17 +144,17 @@ public class CelebritiesChatActivity extends AppCompatActivity {
                     databaseReference.child(sharedPreferences.getString("user_id", "0"))
                             .child("receiver_id").setValue(user_id);
                     //2- Store in Remote Database
-                     remoteDatabase.insertChatTable(Integer.parseInt(sharedPreferences.getString("user_id", "0")),
-                     user_id,
-                     text_chat.getText().toString(),
-                      1);
+                    remoteDatabase.insertChatTable(Integer.parseInt(sharedPreferences.getString("user_id", "0")),
+                            user_id,
+                            text_chat.getText().toString(),
+                            1);
 
                     //3- store in Local Database
-                    //localDatabase.insertToTableNayDB(Integer.parseInt(sharedPreferences.getString("user_id", "0")),
-                    //  user_id,
-                    //  text_chat.getText().toString(),
-                    //  1);
-
+                    boolean cheks = localDB.insertToTableNayDB(Integer.parseInt(sharedPreferences.getString("user_id", "0")),
+                            user_id,
+                            text_chat.getText().toString(),
+                            1);
+                    Log.d("checkifadd", cheks + "");
                     //4- store in ArrayList
 
                     celebritiesChatModels.add(new CelebritiesChatModel(Integer.parseInt(sharedPreferences.getString("user_id", "0")),
@@ -208,16 +212,17 @@ public class CelebritiesChatActivity extends AppCompatActivity {
                                     databaseReference.child(sharedPreferences.getString("user_id", "0"))
                                             .child("receiver_id").setValue(user_id);
                                     //2- Store in Remote Database
-                                   remoteDatabase.insertChatTable(Integer.parseInt(sharedPreferences.getString("user_id", "0")),
+                                    remoteDatabase.insertChatTable(Integer.parseInt(sharedPreferences.getString("user_id", "0")),
                                             user_id,
                                             uri.toString(),
                                             2);
 
                                     //3- store in Local Database
-                                   // localDatabase.insertToTableNayDB(Integer.parseInt(sharedPreferences.getString("user_id", "0")),
-                                        //    celebritiesId,
-                                        //    uri.toString(),
-                                         //   2);
+                                    boolean cheks = localDB.insertToTableNayDB(Integer.parseInt(sharedPreferences.getString("user_id", "0")),
+                                            user_id,
+                                            uri.toString(),
+                                            2);
+                                    Log.d("checkifadd", cheks + "");
 
 
                                 }
