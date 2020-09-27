@@ -23,6 +23,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.rahafmaria.naycelebrities.PathUrls;
 import com.rahafmaria.naycelebrities.R;
 
@@ -34,6 +36,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText email_login;
     EditText password_login;
     Button login_button;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
@@ -49,6 +53,13 @@ public class LoginActivity extends AppCompatActivity {
         }
         Initialization();
         listeners();
+        databaseReference.child(sharedPreferences.getString("user_id", "0"))
+                .child("message").setValue("");
+        databaseReference.child(sharedPreferences.getString("user_id", "0"))
+                .child("type").setValue(1);
+        databaseReference.child(sharedPreferences.getString("user_id", "0"))
+                .child("receiver_id").setValue(0);
+
     }
 
     public void Initialization() {
@@ -57,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
         login_button = findViewById(R.id.login_button);
         sharedPreferences = getSharedPreferences("loginCheck", MODE_PRIVATE);
         editor = sharedPreferences.edit();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("chat");
 
     }
 

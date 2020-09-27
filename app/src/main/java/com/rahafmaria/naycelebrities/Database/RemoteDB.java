@@ -88,5 +88,43 @@ public class RemoteDB {
         requestQueue.add(stringRequest);
 
     }
+    public void insertChatTable( final int user_sender_id, final int user_receiver_id, final String message, final int type) {
+        final String chat_id = Math.min(user_sender_id,user_receiver_id)+""+Math.max(user_sender_id,user_receiver_id);
+        String url = PathUrls.baseUrl + PathUrls.insertChatUrl;
+        final RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest =
+                new StringRequest(Request.Method.POST, url, new Response.Listener() {
+                    @Override
+                    public void onResponse(Object response) {
+
+                        Log.d("resInsertChatTable", response + "");
+
+
+                    }
+
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();
+
+                    }
+                }) {
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("chat_id", chat_id + "");
+                        params.put("user_sender", user_sender_id + "");
+                        params.put("user_reciver", user_receiver_id + "");
+                        params.put("message", message + "");
+                        params.put("message_type", type + "");
+                        return params;
+                    }
+
+
+                };
+        requestQueue.add(stringRequest);
+
+
+    }
 
 }
