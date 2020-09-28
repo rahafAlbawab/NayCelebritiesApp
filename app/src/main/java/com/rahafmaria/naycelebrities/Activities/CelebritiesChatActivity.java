@@ -61,6 +61,7 @@ public class CelebritiesChatActivity extends AppCompatActivity {
     RemoteDB remoteDatabase;
     LocalDB localDB;
     Uri filePath;
+    String last_message_receive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,33 +82,47 @@ public class CelebritiesChatActivity extends AppCompatActivity {
 
         }
 
+        recycler_chat.setLayoutManager(new LinearLayoutManager(this));
+        celebritiesChatModels.addAll(localDB.selectToTableNayDB());
+        recycler_chat.setAdapter(celebritiesChatAdapter);
+        recycler_chat.scrollToPosition(celebritiesChatModels.size() - 1);
+        for (int i = celebritiesChatModels.size() - 1 ; i > 0 ;i--){
+            if (celebritiesChatModels.get(i).user_id != Integer.parseInt(sharedPreferences.getString("user_id", "0"))){
+                last_message_receive = celebritiesChatModels.get(i).message;
+                return;
+            }
 
-        databaseReference.child(user_id + "").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.child("message").getValue().toString().equals("")) {
-                    if (dataSnapshot.child("receiver_id").getValue().toString().equals(sharedPreferences.getString("user_id", "0"))) {
-                        celebritiesChatModels.add(new CelebritiesChatModel(user_id,
-                                dataSnapshot.child("message").getValue().toString(),
-                                Integer.parseInt(dataSnapshot.child("type").getValue().toString())));
-                        celebritiesChatAdapter.notifyDataSetChanged();
-                        recycler_chat.scrollToPosition(celebritiesChatModels.size() - 1);
+        }
 
+            databaseReference.child(user_id + "").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                    if (!dataSnapshot.child("message").getValue().toString().equals("")) {
+                        if (dataSnapshot.child("receiver_id").getValue().toString().equals(sharedPreferences.getString("user_id", "0"))) {
+                            if ((celebritiesChatModels.size() != 0) &&
+                                    (!dataSnapshot.child("message").getValue().toString().equals(last_message_receive))) {
+                                celebritiesChatModels.add(new CelebritiesChatModel(user_id,
+                                        dataSnapshot.child("message").getValue().toString(),
+                                        Integer.parseInt(dataSnapshot.child("type").getValue().toString())));
+                                localDB.insertToTableNayDB(user_id,
+                                        Integer.parseInt(sharedPreferences.getString("user_id", "0")),
+                                        dataSnapshot.child("message").getValue().toString(),
+                                        Integer.parseInt(dataSnapshot.child("type").getValue().toString()));
+                                celebritiesChatAdapter.notifyDataSetChanged();
+                                recycler_chat.scrollToPosition(celebritiesChatModels.size() - 1);
+                            }
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
 
 
-        recycler_chat.setAdapter(celebritiesChatAdapter);
-        recycler_chat.setLayoutManager(new LinearLayoutManager(this));
-        recycler_chat.scrollToPosition(celebritiesChatModels.size() - 1);
     }
 
     private void Initialization() {

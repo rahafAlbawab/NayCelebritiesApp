@@ -2,15 +2,22 @@ package com.rahafmaria.naycelebrities.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.rahafmaria.naycelebrities.Model.CelebritiesChatModel;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 public class LocalDB extends SQLiteOpenHelper {
     public static final String DB_NAME = "Nay_Database";
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 3;
     public static final String CHAT = "Chat";
 
     public LocalDB(@Nullable Context context) {
@@ -21,7 +28,7 @@ public class LocalDB extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("create table " + CHAT +
                 "(chat_id integer , user_sender_id integer , user_receiver_id integer " +
-                ", message varchar(255) , message_send_date timestamp ,type integer)");
+                ", message text , message_send_date text ,type integer)");
 
     }
 
@@ -33,16 +40,47 @@ public class LocalDB extends SQLiteOpenHelper {
 
     public boolean insertToTableNayDB(int user_sender_id, int user_receiver_id, String message, int type) {
         final String chat_id = Math.min(user_sender_id, user_receiver_id) + "" + Math.max(user_sender_id, user_receiver_id);
+        SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String timeStamp = s.format(new Date());
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("chat_id", chat_id);
         contentValues.put("user_sender_id", user_sender_id);
         contentValues.put("user_receiver_id", user_receiver_id);
         contentValues.put("message", message);
+        contentValues.put("message_send_date", timeStamp);
         contentValues.put("type", type);
         long result = db.insert(CHAT, null, contentValues);
-        Log.d("hi", "hi");
         return result != -1;
 
+    }
+
+    public ArrayList<CelebritiesChatModel> selectToTableNayDB() {
+
+        ArrayList<CelebritiesChatModel> celebrityChatModels = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from " + CHAT, null);
+        try {
+
+            cursor.moveToFirst();
+
+
+            while (cursor.isAfterLast() == false) {
+                for (int i = 0; i < cursor.getCount(); i++) {
+                    celebrityChatModels.add(new CelebritiesChatModel(cursor.getInt(1), cursor.getString(3), cursor.getInt(5)));
+
+
+                    cursor.moveToNext();
+                }
+
+
+            }
+
+            cursor.close();
+        } catch (Exception ex) {
+        }
+
+
+        return celebrityChatModels;
     }
 }
